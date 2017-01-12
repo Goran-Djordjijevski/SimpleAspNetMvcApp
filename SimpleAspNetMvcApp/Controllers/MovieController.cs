@@ -15,9 +15,17 @@ namespace SimpleAspNetMvcApp.Controllers
         private MovieDbContext db = new MovieDbContext();
 
         // GET: Movie
-        public ActionResult Index()
+        public ActionResult Index(string searchMovie)
         {
-            return View(db.Movies.ToList());
+            var movies = from m in db.Movies
+                         select m;
+
+            if (!string.IsNullOrEmpty(searchMovie))
+            {
+                movies = movies.Where(s => s.Title.Contains(searchMovie));
+            }
+
+            return View(movies);
         }
 
         // GET: Movie/Details/5
