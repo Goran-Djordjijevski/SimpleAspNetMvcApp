@@ -29,7 +29,6 @@ namespace SimpleAspNetMvcApp.Models
         public string Genre { get; set; }
 
         [Required(ErrorMessage = "Please enter the movie rating.")]
-        [StringLength(10)]
         public double Rating { get; set; }
     }
 }
